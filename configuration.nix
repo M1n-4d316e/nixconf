@@ -114,6 +114,7 @@
     github-desktop
     gnumake
     neovim
+    code-minimap
     vscode
     obsidian
     hugo
@@ -178,6 +179,8 @@
     "-cache-size"
     "10MB"
   ];
+
+  environment.localBinInPath = true;
 
   nixpkgs.overlays = [
     (import (builtins.fetchTarball https://github.com/nix-community/emacs-overlay/archive/master.tar.gz))
