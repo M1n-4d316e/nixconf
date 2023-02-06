@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -86,7 +87,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -104,32 +105,33 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-	adw-gtk3
-	cargo
-	ckb-next
-	emacsGit
-	enpass
-	fish
-	github-desktop
-	gnumake
-	neovim
-	obsidian
-	hugo
-	gnome.gnome-terminal
-	nerdfonts
-	pavucontrol
-	git
-	gnome.gnome-tweaks
-	nordzy-cursor-theme
-	papirus-icon-theme
-	nextdns
-	spotify
-	starship
-	tdesktop
-	vim
-	yadm
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    adw-gtk3
+    cargo
+    ckb-next
+    emacsGit
+    enpass
+    fish
+    github-desktop
+    gnumake
+    neovim
+    vscode
+    obsidian
+    hugo
+    gnome.gnome-terminal
+    nerdfonts
+    pavucontrol
+    git
+    gnome.gnome-tweaks
+    nordzy-cursor-theme
+    papirus-icon-theme
+    nextdns
+    spotify
+    starship
+    tdesktop
+    vim
+    yadm
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -158,26 +160,26 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
-	hardware.ckb-next.enable = true;
-	users.defaultUserShell = pkgs.fish;
-	# Flatpak
-	services.flatpak.enable = true;
+  hardware.ckb-next.enable = true;
+  users.defaultUserShell = pkgs.fish;
+  # Flatpak
+  services.flatpak.enable = true;
   services.xserver.displayManager.lightdm.greeters.gtk.iconTheme = {
     package = pkgs.nordzy-cursor-theme;
     name = "Nordzy-cursors";
   };
- services.nextdns.enable = true;
- services.nextdns.arguments = [
-   "-config" 
-   "45.90.28.0#M1n-Linux-5784a5.dns.nextdns.io" 
-#   "2a07:a8c0::#M1n-Linux-5784a5.dns.nextdns.io" 
-#   "45.90.30.0#M1n-Linux-5784a5.dns.nextdns.io" 
-#   "2a07:a8c1::#M1n-Linux-5784a5.dns.nextdns.io" 
-   "-cache-size" 
-   "10MB"
- ];
+  services.nextdns.enable = true;
+  services.nextdns.arguments = [
+    "-config"
+    "45.90.28.0#M1n-Linux-5784a5.dns.nextdns.io"
+    #   "2a07:a8c0::#M1n-Linux-5784a5.dns.nextdns.io" 
+    #   "45.90.30.0#M1n-Linux-5784a5.dns.nextdns.io" 
+    #   "2a07:a8c1::#M1n-Linux-5784a5.dns.nextdns.io" 
+    "-cache-size"
+    "10MB"
+  ];
 
- nixpkgs.overlays = [
-  (import (builtins.fetchTarball https://github.com/nix-community/emacs-overlay/archive/master.tar.gz))
-];
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball https://github.com/nix-community/emacs-overlay/archive/master.tar.gz))
+  ];
 }
